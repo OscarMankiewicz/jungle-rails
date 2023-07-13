@@ -13,6 +13,7 @@
           <th>Quantity</th>
           <th>Price</th>
         </tr>
+        
       </thead>
       <tbody>
         <% enhanced_cart.each do |item| %>
@@ -25,7 +26,7 @@
             TOTAL:
           </th>
           <th>
-            <%= cart_subtotal_cents / 100.0 %>
+            $<%= cart_subtotal_cents / 100.0 %>
           </th>
         </tr>
       </tfoot>
@@ -34,6 +35,7 @@
 
   <div class="row">
     <div class="col-xs-12">
+    <% if enhanced_cart.present? %>
       <%= form_tag orders_path do %>
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -46,6 +48,7 @@
           data-currency="cad">
         </script>
       <% end %>
+    <% end %>
     </div>
   </div>
 
